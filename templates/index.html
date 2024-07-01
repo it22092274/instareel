@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Instagram Reel Downloader</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+      .banner {
+        background-color: #007bff;
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+      }
+      .footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Reel Downloader</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#how-to-use">How to Use</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#rating">Rating</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Welcome Banner -->
+    <div class="banner">
+      <h1>Welcome to Instagram Reel Downloader</h1>
+      <p>Download your favorite Instagram Reels with ease.</p>
+    </div>
+
+    <div class="container">
+      <!-- Form Section -->
+      <h1 class="mt-5">Instagram Reel Downloader</h1>
+      <form action="/download" method="post">
+        <div class="form-group">
+          <label for="url">Instagram Reel URL</label>
+          <input type="url" class="form-control" id="url" name="url" placeholder="Enter Instagram reel URL" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Download</button>
+      </form>
+    </div>
+
+    <!-- About Section -->
+    <div class="container mt-5" id="about">
+      <h2>About</h2>
+      <p>Instagram Reel Downloader is a free tool that allows you to download and save Instagram Reels to your device. Enjoy your favorite videos offline and share them with friends and family.</p>
+    </div>
+
+    <!-- How to Use Section -->
+    <div class="container mt-5" id="how-to-use">
+      <h2>How to Use</h2>
+      <ol>
+        <li>Find the Instagram Reel you want to download.</li>
+        <li>Copy the URL of the Reel.</li>
+        <li>Paste the URL into the input field above.</li>
+        <li>Click the Download button and save the video to your device.</li>
+      </ol>
+    </div>
+
+    <!-- Rating Section -->
+    <div class="container mt-5" id="rating">
+      <h2>Rating</h2>
+      <p>If you enjoy using Instagram Reel Downloader, please rate us!</p>
+      <div class="form-group">
+        <label for="rating">Rate us</label>
+        <select class="form-control" id="rating">
+          <option>1 Star</option>
+          <option>2 Stars</option>
+          <option>3 Stars</option>
+          <option>4 Stars</option>
+          <option>5 Stars</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+      <div class="container">
+        <p>&copy; 2024 Instagram Reel Downloader. All rights reserved.</p>
+        <p>Contact us at <a href="mailto:support@reeldownloader.com">support@reeldownloader.com</a></p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
