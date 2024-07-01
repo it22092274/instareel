@@ -1,11 +1,6 @@
 from flask import Flask, render_template, request, send_file
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 import requests
+from bs4 import BeautifulSoup
 import os
 
 app = Flask(__name__)
@@ -26,32 +21,24 @@ def download():
 
 def get_download_link(reel_url):
     url = 'https://snapinsta.app/instagram-reels-video-download'
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
 
-    try:
-        driver.get(url)
-        wait = WebDriverWait(driver, 20)
-        form = wait.until(EC.presence_of_element_located((By.NAME, "formurl")))
+    # You will need to inspect the page to find the correct form field names and other details.
+    # This is an example and may not work as-is without proper inspection.
+    form = soup.find('form', {'name': 'formurl'})
+    input_field = form.find('input', {'name': 'url'})
+    input_field['value'] = reel_url
 
-        input_field = driver.find_element(By.NAME, "url")
-        input_field.send_keys(reel_url)
+    form_action = form['action']
+    form_response = requests.post(form_action, data={input_field['name']: input_field['value']})
+    form_soup = BeautifulSoup(form_response.content, 'html.parser')
+    
+    # Again, inspect the page to find the correct class names or IDs.
+    download_section = form_soup.find('div', {'class': 'download-content'})
+    download_link = download_section.find('a', {'class': 'download-media'})['href']
 
-        submit_button = driver.find_element(By.ID, "btn-submit")
-        submit_button.click()
-
-        download_section = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "download-content")))
-
-        download_link = download_section.find_element(By.CLASS_NAME, "download-media").get_attribute("href")
-        return download_link
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
-    finally:
-        driver.quit()
+    return download_link
 
 def download_video(download_link):
     folder_path = 'reels'
